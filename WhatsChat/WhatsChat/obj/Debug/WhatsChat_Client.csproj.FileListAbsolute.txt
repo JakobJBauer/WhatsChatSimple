@@ -1,0 +1,5 @@
+C:\Users\omar_\Documents\JakobJBauer\WhatsChat\WhatsChat\bin\Debug\WhatsChat.exe.config
+C:\Users\omar_\Documents\JakobJBauer\WhatsChat\WhatsChat\bin\Debug\WhatsChat.exe
+C:\Users\omar_\Documents\JakobJBauer\WhatsChat\WhatsChat\bin\Debug\WhatsChat.pdb
+C:\Users\omar_\Documents\JakobJBauer\WhatsChat\WhatsChat\obj\Debug\WhatsChat.exe
+C:\Users\omar_\Documents\JakobJBauer\WhatsChat\WhatsChat\obj\Debug\WhatsChat.pdb
