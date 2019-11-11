@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ChatLib;
 
@@ -39,6 +40,12 @@ namespace ChatService
             {
                 ChatManager.ChatMessages.Add(chatMessage);
                 chatMessage.ID = ChatManager.ChatMessages.IndexOf(chatMessage);
+
+                if (!ChatManager.UserNames.Contains(chatMessage.UserName))
+                {
+                    ChatManager.UserNames.Add(chatMessage.UserName);
+                }
+                
                 return chatMessage.ID;
             }
             catch (Exception e)
@@ -46,6 +53,11 @@ namespace ChatService
                 Console.WriteLine(e);
                 return 0;
             }
+        }
+
+        public List<string> GetUsers()
+        {
+            return ChatManager.UserNames;
         }
     }
 }

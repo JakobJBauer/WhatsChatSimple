@@ -1,4 +1,5 @@
-﻿using System.ServiceModel;
+﻿using System.Collections.Generic;
+using System.ServiceModel;
 
 namespace ChatLib
 {
@@ -33,5 +34,8 @@ namespace ChatLib
         /// <returns>The message with the given ID or NULL if no message was found</returns>
         [OperationContract]
         ChatMessage GetMessage(int id);
+
+        [OperationContract]
+        List<string> GetUsers();
     }
 }
