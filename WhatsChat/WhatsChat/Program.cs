@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
@@ -15,27 +16,54 @@ namespace WhatsChat_Client
         static string refreshOutput = "***** WhatsChat by Jakob Bauer *****";
         static string userName = "";
         static string keyInput = "";
-        static int beitrittsID;
+        private static int beitrittsID;
+        private static int currentWritingLine;
 
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("***** WhatsChat by Jakob Bauer *****");
-            Console.Write("Zielport: ");
+            WriteSystemMessage("IP-Adress(empty for localhost): ");
+            string IP = Console.ReadLine();
+            if (IP.Length == 0)
+            {
+                IP = "localhost";
+                Console.SetCursorPosition(32, 2);
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine("localhost");
+                Console.ResetColor();
+            }
+
+            WriteSystemMessage("Zielport: ");
             string port = Console.ReadLine();
-            channel = new ChannelFactory<IPollingChat>(new WSHttpBinding(SecurityMode.None), "http://localhost:"+port+"/").CreateChannel();
+            try
+            {
+                channel = new ChannelFactory<IPollingChat>(new WSHttpBinding(SecurityMode.None),
+                    "http://"+IP+":"+port+"/").CreateChannel();
 
-            Console.Write("Username: ");
-            userName = Console.ReadLine();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
 
-            Console.WriteLine("Verbinde...");
+            WriteSystemMessage("Username: ");
+            while (true)
+            {
+                userName = Console.ReadLine();
+
+                if (channel.GetUsers().Contains(userName))
+                    WriteSystemMessage("User already registered, pick another name: ");
+                else if(userName.Length >= 20)
+                    WriteSystemMessage("Name is to long, please pick a shorter one: ");
+                else
+                    break;
+            }
+
+            WriteSystemMessage("Verbinde...");
 
             beitrittsID = channel.GetLastMessageID();
-
-            channel.SendMessage(new ChatMessage
-            {
-
-            });
-
 
             var getMessages = new System.Threading.Thread(GetMessages);
             var update = new System.Threading.Thread(Update);
@@ -45,8 +73,11 @@ namespace WhatsChat_Client
             update.Start();
             writeKeys.Start();
 
+            currentWritingLine = 2;
+
             System.Threading.Thread.Sleep(1000);
             Console.Clear();
+
             channel.SendMessage(new ChatMessage
             {
                 UserName = userName,
@@ -61,7 +92,9 @@ namespace WhatsChat_Client
             {
                 Console.Clear();
                 Console.WriteLine(refreshOutput);
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write(">" + keyInput);
+                Console.ResetColor();
                 System.Threading.Thread.Sleep(100);
             }
         }
@@ -117,6 +150,13 @@ namespace WhatsChat_Client
                         refreshOutput += "\n[" + msg.DateTime + "] - " + msg.UserName + ": " + msg.Message;
                 }
             }
+        }
+
+        static void WriteSystemMessage(string msg)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write(msg);
+            Console.ResetColor();
         }
     }
 }
