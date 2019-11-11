@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -13,7 +14,55 @@ namespace WhatsChat_Client
     {
         static IPollingChat channel;
         static List<ChatMessage> ChatMessages = new List<ChatMessage>();
-        static string refreshOutput = "***** WhatsChat by Jakob Bauer *****";
+        static List<string> Users = new List<string>();
+        static Dictionary<string, ConsoleColor> UserColors = new Dictionary<string, ConsoleColor>();
+
+        static void AssignUserColor(string userName)
+        {
+            ConsoleColor color;
+            switch (Users.Count % 9)
+            {
+                case 0:
+                    color = ConsoleColor.Blue;
+                    break;
+                case 1:
+                    color = ConsoleColor.Green;
+                    break;
+                case 2:
+                    color = ConsoleColor.Magenta;
+                    break;
+                case 3:
+                    color = ConsoleColor.Red;
+                    break;
+                case 4:
+                    color = ConsoleColor.DarkBlue;
+                    break;
+                case 5:
+                    color = ConsoleColor.DarkCyan;
+                    break;
+                case 6:
+                    color = ConsoleColor.DarkGreen;
+                    break;
+                case 7:
+                    color = ConsoleColor.DarkMagenta;
+                    break;
+                default:
+                    color = ConsoleColor.DarkRed;
+                    break;
+            }
+            UserColors.Add(userName, color);
+        }
+        
+        static List<Dictionary<string, string>> refreshOutput = new List<Dictionary<string, string>>(); // msg, userName, timeStamp
+
+        static void AddOutput(string message, string usrName, string timeStamp)
+        {
+            refreshOutput.Add(new Dictionary<string, string>());
+            refreshOutput[refreshOutput.Count - 1].Add("msg", message);
+            refreshOutput[refreshOutput.Count - 1].Add("userName", usrName);
+            refreshOutput[refreshOutput.Count - 1].Add("timeStamp", timeStamp);
+        }
+
         static string userName = "";
         static string keyInput = "";
         private static int beitrittsID;
@@ -23,6 +72,7 @@ namespace WhatsChat_Client
         {
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("***** WhatsChat by Jakob Bauer *****");
+
             WriteSystemMessage("IP-Adress(empty for localhost): ");
             string IP = Console.ReadLine();
             if (IP.Length == 0)
@@ -51,7 +101,14 @@ namespace WhatsChat_Client
             WriteSystemMessage("Username: ");
             while (true)
             {
-                userName = Console.ReadLine();
+                while (true)
+                {
+                    userName = Console.ReadLine();
+
+                    if (userName != "")
+                        break;
+                    Console.SetCursorPosition(10, 4);
+                }
 
                 if (channel.GetUsers().Contains(userName))
                     WriteSystemMessage("User already registered, pick another name: ");
@@ -62,6 +119,7 @@ namespace WhatsChat_Client
             }
 
             WriteSystemMessage("Verbinde...");
+            System.Threading.Thread.Sleep(1000);
 
             beitrittsID = channel.GetLastMessageID();
 
@@ -75,9 +133,6 @@ namespace WhatsChat_Client
 
             currentWritingLine = 2;
 
-            System.Threading.Thread.Sleep(1000);
-            Console.Clear();
-
             channel.SendMessage(new ChatMessage
             {
                 UserName = userName,
@@ -90,12 +145,30 @@ namespace WhatsChat_Client
         {
             while (true)
             {
+                System.Threading.Thread.Sleep(100);
                 Console.Clear();
-                Console.WriteLine(refreshOutput);
+                foreach (var outElement in refreshOutput)
+                {
+                    if (outElement["msg"] == null)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Gray;
+                        Console.WriteLine("\n"+outElement["userName"]+" joined at "+outElement["timeStamp"]+"\n");
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Gray;
+                        Console.Write("["+outElement["timeStamp"]+"] ");
+                        Console.ForegroundColor = UserColors[outElement["userName"]];
+                        Console.Write(outElement["userName"]+": ");
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.WriteLine(outElement["msg"]);
+                    }
+
+
+                }
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write(">" + keyInput);
                 Console.ResetColor();
-                System.Threading.Thread.Sleep(100);
             }
         }
 
@@ -144,10 +217,13 @@ namespace WhatsChat_Client
                 {
                     ChatMessage msg;
                     ChatMessages.Add(msg = channel.GetMessage(i));
-                    if(msg.Message == null)
-                        refreshOutput += "\n\n" + msg.UserName + " hat den Chat um " + msg.DateTime + " betreten.\n";
-                    else
-                        refreshOutput += "\n[" + msg.DateTime + "] - " + msg.UserName + ": " + msg.Message;
+                    AddOutput(msg.Message, msg.UserName, msg.DateTime.ToString());
+
+                    if (!Users.Contains(msg.UserName))
+                    {
+                        Users.Add(msg.UserName);
+                        AssignUserColor(msg.UserName);
+                    }
                 }
             }
         }
