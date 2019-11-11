@@ -3,3 +3,7 @@ C:\Users\omar_\Documents\JakobJBauer\WhatsChat\WhatsChat\bin\Debug\WhatsChat.exe
 C:\Users\omar_\Documents\JakobJBauer\WhatsChat\WhatsChat\bin\Debug\WhatsChat.pdb
 C:\Users\omar_\Documents\JakobJBauer\WhatsChat\WhatsChat\obj\Debug\WhatsChat.exe
 C:\Users\omar_\Documents\JakobJBauer\WhatsChat\WhatsChat\obj\Debug\WhatsChat.pdb
+C:\Users\omar_\Documents\JakobJBauer\WhatsChat\WhatsChat\bin\Debug\ChatLib.dll
+C:\Users\omar_\Documents\JakobJBauer\WhatsChat\WhatsChat\bin\Debug\ChatLib.pdb
+C:\Users\omar_\Documents\JakobJBauer\WhatsChat\WhatsChat\obj\Debug\WhatsChat_Client.csproj.CopyComplete
+C:\Users\omar_\Documents\JakobJBauer\WhatsChat\WhatsChat\obj\Debug\WhatsChat_Client.csprojAssemblyReference.cache
