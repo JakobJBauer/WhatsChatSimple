@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhatsChat_Client", "WhatsChat\WhatsChat_Client.csproj", "{637460A7-C804-460B-869A-AF967E3AB35C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatLib", "..\WCF-SimpleChat-master\ChatLib\ChatLib.csproj", "{12F2DC00-E0B0-4F66-8898-7BA6455D18B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatLib", "ChatLib\ChatLib.csproj", "{12F2DC00-E0B0-4F66-8898-7BA6455D18B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatService", "..\WCF-SimpleChat-master\ChatService\ChatService.csproj", "{9F5CB1C2-745A-48E8-AE1C-66FDBC2721E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatService", "ChatService\ChatService.csproj", "{9F5CB1C2-745A-48E8-AE1C-66FDBC2721E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
