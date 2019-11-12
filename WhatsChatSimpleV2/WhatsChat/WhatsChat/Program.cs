@@ -65,9 +65,10 @@ namespace WhatsChat_Client
 
         static string userName = "";
         static string keyInput = "";
+        private static int longestNameLength = 0;
         private static int beitrittsID;
-        private static int currentWritingLine;
         private static bool showTime = true;
+        private static bool makeFun = false;
 
         static void Main(string[] args)
         {
@@ -78,6 +79,7 @@ namespace WhatsChat_Client
 
             do
             {
+                failed = false;
                 WriteSystemMessage("IP-Adress(empty for localhost): ");
                 string IP = Console.ReadLine();
                 if (IP.Length == 0)
@@ -98,7 +100,7 @@ namespace WhatsChat_Client
 
                     channel.SendMessage(new ChatMessage
                     {
-                        UserName = userName,
+                        UserName = null,
                         Message = null,
                         DateTime = DateTime.Now
                     });
@@ -131,7 +133,7 @@ namespace WhatsChat_Client
                     break;
             }
             
-            Console.Write("Deactivate timestamps? (y): ");
+            WriteSystemMessage("Deactivate timestamps? (y): ");
             if (Console.ReadLine() == "y")
                 showTime = false;
 
@@ -147,8 +149,21 @@ namespace WhatsChat_Client
             getMessages.Start();
             update.Start();
             writeKeys.Start();
-
-            currentWritingLine = 2;
+            
+            channel.SendMessage(new ChatMessage
+            {
+                UserName = userName,
+                Message = null,
+                DateTime = DateTime.Now
+            });
+            
+            if(Users.Count == 1)
+                channel.SendMessage(new ChatMessage
+                {
+                    UserName = userName,
+                    Message = null,
+                    DateTime = DateTime.Now
+                });
         }
 
         static void Update()
@@ -161,13 +176,26 @@ namespace WhatsChat_Client
                 {
                     if (outElement["msg"] == null)
                     {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.BackgroundColor = ConsoleColor.DarkRed;
-                        Console.WriteLine(outElement["userName"]+" joined at "+outElement["timeStamp"]);
-                        Console.ResetColor();
+                        if (outElement["userName"] == userName)
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.WriteLine("***** WhatsChat by Jakob Bauer *****");
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.BackgroundColor = ConsoleColor.DarkRed;
+                            Console.WriteLine(outElement["userName"] + " joined at " + outElement["timeStamp"]);
+                            Console.BackgroundColor = ConsoleColor.Black;
+                            Console.ResetColor();
+                        }
                     }
                     else
                     {
+                        string addSpaces = "";
+                        for (int i = outElement["userName"].Length; i <= longestNameLength; i++)
+                            addSpaces += " ";
+                        
                         if (showTime)
                         {
                             Console.ForegroundColor = ConsoleColor.Gray; 
@@ -175,7 +203,7 @@ namespace WhatsChat_Client
                         }
                         
                         Console.ForegroundColor = UserColors[outElement["userName"]];
-                        Console.Write(outElement["userName"]+": ");
+                        Console.Write(outElement["userName"]+":" + addSpaces);
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.WriteLine(outElement["msg"]);
                     }
@@ -183,7 +211,7 @@ namespace WhatsChat_Client
 
                 }
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.Write("Message: " + keyInput);
+                Console.Write("_______________\nMessage: " + keyInput);
                 Console.ResetColor();
             }
         }
@@ -197,6 +225,12 @@ namespace WhatsChat_Client
 
                 if(inpKey.Key == ConsoleKey.Enter)
                 {
+                    if (keyInput.ToLower().Contains("make fun"))
+                        makeFun = true;
+
+                    if (makeFun)
+                        keyInput = MakeFun(keyInput);
+                        
                     channel.SendMessage(new ChatMessage
                     {
                         UserName = userName,
@@ -233,12 +267,17 @@ namespace WhatsChat_Client
                 {
                     ChatMessage msg;
                     ChatMessages.Add(msg = channel.GetMessage(i));
-                    AddOutput(msg.Message, msg.UserName, msg.DateTime.ToString());
-
-                    if (!Users.Contains(msg.UserName))
+                    if(msg.UserName != null)
                     {
-                        Users.Add(msg.UserName);
-                        AssignUserColor(msg.UserName);
+                        AddOutput(msg.Message, msg.UserName, msg.DateTime.ToString());
+
+                        if (!Users.Contains(msg.UserName))
+                        {
+                            Users.Add(msg.UserName);
+                            AssignUserColor(msg.UserName);
+                            if (longestNameLength < msg.UserName.Length)
+                                longestNameLength = msg.UserName.Length;
+                        }
                     }
                 }
             }
@@ -250,5 +289,123 @@ namespace WhatsChat_Client
             Console.Write(msg);
             Console.ResetColor();
         }
+
+        static string MakeFun(string TextToAdjust)
+        {
+            Random rnd = new Random();
+
+            switch (rnd.Next(0,10))
+            {
+                case 0:
+                    TextToAdjust = Fun1(TextToAdjust);
+                    break;
+                case 1:
+                    TextToAdjust = Fun2(TextToAdjust);
+                    break;
+                case 2:
+                    TextToAdjust = Fun3(TextToAdjust);
+                    break;
+                case 3:
+                    TextToAdjust = Fun4(TextToAdjust);
+                    break;
+                case 4:
+                    TextToAdjust = Fun5(TextToAdjust);
+                    break;
+                case 5:
+                    TextToAdjust = Fun6(TextToAdjust);
+                    break;
+                case 6:
+                    TextToAdjust = Fun7(TextToAdjust);
+                    break;
+                case 7:
+                    TextToAdjust = Fun8(TextToAdjust);
+                    break;
+                case 8:
+                    TextToAdjust = Fun9(TextToAdjust);
+                    break;
+                case 9:
+                    TextToAdjust = Fun0(TextToAdjust);
+                    break;
+            }
+
+            return TextToAdjust;
+        }
+
+        static string Fun0(string input)
+        {
+            Random rnd = new Random();
+            string output = "";
+            for (int i = 0; i < input.Length; i++)
+            {
+                if(rnd.Next(0,2) == 0)
+                    output += Char.ToLower(input[i]);
+                else
+                    output += Char.ToUpper(input[i]);
+            }
+            return input;
+        }
+        static string Fun1(string input)
+        {
+            return input+" AND I LOVE CZAKER";
+        }
+        static string Fun2(string input)
+        {
+            return "I love Czaker! "+input;
+        }
+        static string Fun3(string input)
+        {
+            return "I swear i didn't type this you moron!";
+        }
+        static string Fun4(string input)
+        {
+            return "A Czaker-Lover: "+input;
+        }
+        static string Fun5(string input)
+        {
+            return "Y r u ge? "+input;
+        }
+        static string Fun6(string input)
+        {
+            if (input.Contains('I'))
+                input.Insert(input.IndexOf(" I "), (" you "));
+            return input;
+        }
+        static string Fun7(string input)
+        {
+            return input.ToLower();
+        }
+        static string Fun8(string input)
+        {
+            return input.ToUpper() + " AND I LOVE CAPS!!11!";
+        }
+        static string Fun9(string input)
+        {
+            switch (new Random().Next(0, 10))
+            {
+                case 0:
+                    return "Moron!";
+                case 1:
+                    return "Pig!";
+                case 2:
+                    return "Coconut!";
+                case 3:
+                    return "Farmer!";
+                case 4:
+                    return "Canadian!";
+                case 5:
+                    return "Ginger!";
+                case 6:
+                    return "Kiddo!";
+                case 7:
+                    return "Teacher!";
+                case 8:
+                    return "Meat!";
+                case 9:
+                    return "Water!";
+            }
+
+            return "HELP!";
+        }
+        
     }
 }
