@@ -17,3 +17,13 @@ C:/Users/omar_/Documents/JakobJBauer/WhatsChat/WhatsChat/obj/Debug/WhatsChat_Cli
 /home/hackler/Documents/Schule/FSST/5AHEL/WCF/WhatsChatSimpleV2/WhatsChat/WhatsChat/bin/Debug/ChatLib.dll
 /home/hackler/Documents/Schule/FSST/5AHEL/WCF/WhatsChatSimpleV2/WhatsChat/WhatsChat/bin/Debug/ChatLib.pdb
 /home/hackler/Documents/Schule/FSST/5AHEL/WCF/WhatsChatSimpleV2/WhatsChat/WhatsChat/obj/Debug/WhatsChat_Client.csproj.CopyComplete
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\WhatsChat\bin\Debug\WhatsChat.exe.config
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\WhatsChat\bin\Debug\WhatsChat.exe
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\WhatsChat\bin\Debug\WhatsChat.pdb
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\WhatsChat\bin\Debug\ChatLib.dll
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\WhatsChat\bin\Debug\ChatLib.pdb
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\WhatsChat\obj\Debug\WhatsChat_Client.csprojAssemblyReference.cache
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\WhatsChat\obj\Debug\WhatsChat_Client.csproj.CoreCompileInputs.cache
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\WhatsChat\obj\Debug\WhatsChat_Client.csproj.CopyComplete
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\WhatsChat\obj\Debug\WhatsChat.exe
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\WhatsChat\obj\Debug\WhatsChat.pdb

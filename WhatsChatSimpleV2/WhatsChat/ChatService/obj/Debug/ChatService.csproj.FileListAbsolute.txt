@@ -17,3 +17,12 @@
 /home/hackler/Documents/Schule/FSST/5AHEL/WCF/WhatsChatSimpleV2/WhatsChat/ChatService/obj/Debug/ChatService.csproj.CopyComplete
 /home/hackler/Documents/Schule/FSST/5AHEL/WCF/WhatsChatSimpleV2/WhatsChat/ChatService/obj/Debug/ChatService.exe
 /home/hackler/Documents/Schule/FSST/5AHEL/WCF/WhatsChatSimpleV2/WhatsChat/ChatService/obj/Debug/ChatService.pdb
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\ChatService\bin\Debug\ChatService.exe
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\ChatService\bin\Debug\ChatService.pdb
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\ChatService\bin\Debug\ChatLib.dll
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\ChatService\bin\Debug\ChatLib.pdb
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\ChatService\obj\Debug\ChatService.csprojAssemblyReference.cache
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\ChatService\obj\Debug\ChatService.csproj.CoreCompileInputs.cache
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\ChatService\obj\Debug\ChatService.csproj.CopyComplete
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\ChatService\obj\Debug\ChatService.exe
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\ChatService\obj\Debug\ChatService.pdb

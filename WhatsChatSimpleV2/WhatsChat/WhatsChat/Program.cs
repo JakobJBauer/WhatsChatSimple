@@ -85,7 +85,7 @@ namespace WhatsChat_Client
                 if (IP.Length == 0)
                 {
                     IP = "localhost";
-                    Console.SetCursorPosition(32, 2);
+                    Console.SetCursorPosition(32, 1);
                     Console.ForegroundColor = ConsoleColor.Gray;
                     Console.WriteLine("localhost");
                     Console.ResetColor();
@@ -157,7 +157,7 @@ namespace WhatsChat_Client
         {
             while (true)
             {
-                System.Threading.Thread.Sleep(100);
+                System.Threading.Thread.Sleep(200);
                 Console.Clear();
                 foreach (var outElement in refreshOutput)
                 {
@@ -191,7 +191,7 @@ namespace WhatsChat_Client
                         
                         Console.ForegroundColor = UserColors[outElement["userName"]];
                         Console.Write(outElement["userName"]+":" + addSpaces);
-                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.ForegroundColor = ConsoleColor.Gray;
                         Console.WriteLine(outElement["msg"]);
                     }
 

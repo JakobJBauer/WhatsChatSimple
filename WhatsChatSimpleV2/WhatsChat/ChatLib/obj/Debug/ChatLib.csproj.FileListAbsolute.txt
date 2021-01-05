@@ -16,3 +16,9 @@
 /home/hackler/Documents/Schule/FSST/5AHEL/WCF/WhatsChatSimpleV2/WhatsChat/ChatLib/obj/Debug/ChatLib.csproj.CoreCompileInputs.cache
 /home/hackler/Documents/Schule/FSST/5AHEL/WCF/WhatsChatSimpleV2/WhatsChat/ChatLib/obj/Debug/ChatLib.dll
 /home/hackler/Documents/Schule/FSST/5AHEL/WCF/WhatsChatSimpleV2/WhatsChat/ChatLib/obj/Debug/ChatLib.pdb
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\ChatLib\bin\Debug\ChatLib.dll
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\ChatLib\bin\Debug\ChatLib.pdb
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\ChatLib\obj\Debug\ChatLib.csprojAssemblyReference.cache
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\ChatLib\obj\Debug\ChatLib.csproj.CoreCompileInputs.cache
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\ChatLib\obj\Debug\ChatLib.dll
+D:\Softwareprojects\WhatsChatSimple\WhatsChatSimpleV2\WhatsChat\ChatLib\obj\Debug\ChatLib.pdb

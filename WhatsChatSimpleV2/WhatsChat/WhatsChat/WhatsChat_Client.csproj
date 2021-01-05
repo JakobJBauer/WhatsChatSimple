@@ -51,7 +51,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\WCF-SimpleChat-master\ChatLib\ChatLib.csproj">
+    <ProjectReference Include="..\ChatLib\ChatLib.csproj">
       <Project>{12f2dc00-e0b0-4f66-8898-7ba6455d18b3}</Project>
       <Name>ChatLib</Name>
     </ProjectReference>
